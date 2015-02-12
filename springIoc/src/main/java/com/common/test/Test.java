@@ -7,7 +7,7 @@ import com.common.service.StudentService;
 
 public class Test {
 	public static void main(String[] args) {
-		ApplicationContext ac = new FileSystemXmlApplicationContext("classpath:applicationContext_test.xml");
+		ApplicationContext ac = new FileSystemXmlApplicationContext("classpath:applicationContext.xml");
 		StudentService studentService = (StudentService)ac.getBean("studentService");
 		studentService.show("123");
 		
