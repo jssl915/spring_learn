@@ -40,10 +40,6 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
 			}
 		}
 	}
-	public void annotation() throws Exception{
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext();
-		ComService comService = (ComService) context.getBean("comService");
-	}
 
 	@Override
 	public Object getBean(String id) {
