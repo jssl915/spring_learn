@@ -1,0 +1,6 @@
+<beans>
+	<bean id="comDao" class="com.springAnnotation.dao.ComDaoImpl" />
+	<bean id="comService" class="com.springAnnotation.service.ComServiceImpl" >
+		<property name="comDao" bean="comDao"/>
+	</bean>
+</beans>

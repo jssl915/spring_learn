@@ -10,7 +10,7 @@ import com.common.service.StudentService;
 public class TestController {
 	@Autowired
 	StudentService studentService;
-	@RequestMapping(value = "init")
+	//@RequestMapping(value = "init")
 	public void main() {
 //		ApplicationContext ac = new FileSystemXmlApplicationContext("classpath:applicationContext.xml");
 //		StudentService studentService = (StudentService)ac.getBean("studentService");
