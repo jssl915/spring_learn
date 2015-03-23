@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_BLOG">
+  <resultMap id="BaseResultMap" class="main.java.index.entity.Blog" >
+    <result column="BLOG_ID" property="blogId" jdbcType="DECIMAL" />
+    <result column="BLOG_FLAG" property="blogFlag" jdbcType="DECIMAL" />
+    <result column="BLOG_TITLE_NAME" property="blogTitleName" jdbcType="VARCHAR" />
+    <result column="BLOG_SUMMARY" property="blogSummary" jdbcType="VARCHAR" />
+    <result column="BLOG_READ_NUMBER" property="blogReadNumber" jdbcType="DECIMAL" />
+    <result column="BLOG_CLASSIFY" property="blogClassify" jdbcType="VARCHAR" />
+    <result column="BLOG_AUTHOR" property="blogAuthor" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="DECIMAL" />
+    <result column="RECOMMENT" property="recomment" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+
+    <result column="BLOG_CLASSIFY_NAME" property="blogClassifyName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="insert" parameterClass="main.java.index.entity.Blog" >
+    insert into t_lj_blog
+    <dynamic prepend="(" >
+      <isNotEmpty prepend="," property="blogFlag" >
+        BLOG_FLAG
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogTitleName" >
+        BLOG_TITLE_NAME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogSummary" >
+        BLOG_SUMMARY
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogReadNumber" >
+        BLOG_READ_NUMBER
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogClassify" >
+        BLOG_CLASSIFY
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogAuthor" >
+        BLOG_AUTHOR
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="sort" >
+        SORT
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="recomment" >
+        RECOMMENT
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="createTime" >
+        CREATE_TIME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="updateTime" >
+        UPDATE_TIME
+      </isNotEmpty>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotEmpty prepend="," property="blogFlag" >
+        #blogFlag:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogTitleName" >
+        #blogTitleName:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogSummary" >
+        #blogSummary:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogReadNumber" >
+        #blogReadNumber:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogClassify" >
+        #blogClassify:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogAuthor" >
+        #blogAuthor:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="sort" >
+        #sort:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="recomment" >
+        #recomment:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="createTime" >
+        #createTime:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="updateTime" >
+        #updateTime:VARCHAR#
+      </isNotEmpty>
+      )
+    </dynamic>
+  </insert>
+  
+    <select id="selectBlogList" resultMap="BaseResultMap" parameterClass="map" >
+    	select bl.*,bc.blog_classify_name from t_lj_blog bl
+    	left join t_lj_blog_classify bc on bl.blog_classify = bc.blog_classify_id
+    	<dynamic prepend="where"> 
+           <isNotEmpty prepend="and" property="blogId"> 
+                   bl.blog_id = #blogId#
+           </isNotEmpty> 
+           <isNotEmpty prepend="and" property="recomment"> 
+                   bl.RECOMMENT = #recomment#
+           </isNotEmpty> 
+           <isNotEmpty prepend="and" property="blogTitleName"> 
+                   bl.blogTitleName like '%'|| #blogTitleName# ||'%' 
+           </isNotEmpty> 
+           <isNotEmpty prepend="and" property="blogClassify" >
+	        	   bl.BLOG_CLASSIFY = #blogClassify#
+	      </isNotEmpty>
+       </dynamic> 
+       order by bl.create_time desc
+   </select>
+   
+    <select id="selectbyBlogId" resultMap="BaseResultMap" parameterClass="int" >
+    	select bl.*,bc.blog_classify_name from t_lj_blog bl
+    	left join t_lj_blog_classify bc on bl.blog_classify = bc.blog_classify_id
+    	where bl.blog_id = #blogId#
+  </select>
+
+ </sqlMap>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings useStatementNamespaces="true" cacheModelsEnabled="true"
+		enhancementEnabled="true" lazyLoadingEnabled="true"
+		maxTransactions="50" maxRequests="500" maxSessions="100" />
+	<!-- 在spring中配置，使用通配符，此处导入一个空的仅为满足dtd -->
+	<sqlMap resource="main/resources/blank_SqlMap.xml" /> 
+</sqlMapConfig>

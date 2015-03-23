@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_BLOG_COMMENT">
+  <resultMap id="BaseResultMap" class="main.java.index.entity.BlogComment" >
+    <result column="BLOG_COMMENT_ID" property="blogCommentId" jdbcType="DECIMAL" />
+    <result column="BLOG_ID" property="blogId" jdbcType="DECIMAL" />
+    <result column="VISIT_NAME" property="visitName" jdbcType="VARCHAR" />
+    <result column="VISIT_EMAIL" property="visitEmail" jdbcType="VARCHAR" />
+    <result column="VISIT_URL" property="visitUrl" jdbcType="VARCHAR" />
+    <result column="VISIT_CONTENT" property="visitContent" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="BLOG_COMMENT_FLAG" property="blogCommentFlag" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <insert id="insert" parameterClass="main.java.index.entity.BlogComment" >
+    insert into t_lj_blog_comment
+    <dynamic prepend="(" >
+      <isNotEmpty prepend="," property="blogId" >
+        BLOG_ID
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitName" >
+        VISIT_NAME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitEmail" >
+        VISIT_EMAIL
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitUrl" >
+        VISIT_URL
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitContent" >
+        VISIT_CONTENT
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="createTime" >
+        CREATE_TIME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="updateTime" >
+        UPDATE_TIME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogCommentFlag" >
+        BLOG_COMMENT_Flag
+      </isNotEmpty>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotEmpty prepend="," property="blogId" >
+        #blogId:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitName" >
+        #visitName:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitEmail" >
+        #visitEmail:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitUrl" >
+        #visitUrl:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="visitContent" >
+        #visitContent:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="createTime" >
+        #createTime:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="updateTime" >
+        #updateTime:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="blogCommentFlag" >
+        #blogCommentFlag:DECIMAL#
+      </isNotEmpty>
+      )
+    </dynamic>
+  </insert>
+  
+    <select id="selectBlogCommentList" resultMap="BaseResultMap" parameterClass="map" >
+    	select * from t_lj_blog_comment where blog_id=#blogId#
+    	order by create_time desc
+   </select>
+
+ </sqlMap>

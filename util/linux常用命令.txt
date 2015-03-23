@@ -1,0 +1,104 @@
+【1】常用命令
+pwd 查看当前目录
+df -h 查看当前硬盘使用状况
+clear 清屏幕
+ls 查看当前目录文件列表
+
+dir 查看当前目录文件列表
+
+
+【2】安装JDK，path之类的已经自动设置好了
+yum list java*
+yum list java-1.7*  
+yum install java-1.7.0-openjdk* -y 
+
+
+【3】安装mysql；特别注意：网上很多安装mysql的文章，都是不行的！！！！
+#我喜欢在home目录操作命令
+cd /home
+
+#查看所有以mysql开头的软件
+yum list mysql*
+
+#安装mysql
+yum install mysql-server* -y
+
+#启动mysql
+/etc/init.d/mysqld start
+
+#设定mysql自动启动，我亲自重启了ECS，确实ok
+chkconfig mysqld on
+
+#复制mysql的配置文件到etc目录，提示是否覆盖，选择y
+cp /usr/share/mysql/my-medium.cnf   /etc/my.cnf
+
+#重新设定mysql密码，默认密码是【空】，输入新密码，注意提问，是否删除匿名账户？【y】  是否禁止远程登录？【n】是否移除test数据库?【y】是否重载权限文件【y】
+mysql_secure_installation
+
+#重启mysql，此时用本机Navicat Premium还是连不上mysql的！
+/etc/init.d/mysqld restart
+
+#用命令访问mysql
+mysql -u root -p
+
+#使用mysql数据库
+use mysql;
+
+#查询当前用户情况，显示有3条记录，127.0.0.1；localhost；iz28cj8yjofz；其中最后这个是ECS主机名
+select host, user from user;  
+
+#把localhost这条记录的host改为 %； 意思是root可以由任何主机登录mysql，网上很多写法，都没有and host='localhost'这个条件，经常报错。
+update user set host = '%' where user = 'root' and host='localhost';
+
+#再次查询，可以看到host有3个；%；127.0.0.1；iz28cj8yjofz；其实user表的主键是user字段和host字段的联合主键。
+select host, user from user; 
+
+#保险起见，重启mysql，Navicat Premium连接正常！万岁！
+/etc/init.d/mysqld restart
+
+
+【4】安装tomcat
+
+cd /home
+wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.57/bin/apache-tomcat-7.0.57.tar.gz
+
+
+tar -zxf apache-tomcat-7.0.57.tar.gz 
+cd apache-tomcat-7.0.57
+
+启动tomcat
+./startup.sh
+
+停止tomcat
+./shutdown.sh 
+
+
+【5】安装了apache， 转发2个域名(后面补充)
+
+service httpd start 启动
+service httpd restart 重新启动
+service httpd stop 停止服务
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+rpm -qa |grep java 看是否安装了java
+
+echo $PATH 看环境变量是否配置了java路径
+
+find / -name java 查找java文件
+
+一般linux服务器会自带jdk，但版本可能1.4 太低
+
+rpm -qa |grep mysql 看是否安装了mysql 
+
+rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库
+service mysqld start启动
+#yum remove mysql卸载软件
+使用#rm -rf /var/lib/mysql* 和 #rm -rf /usr/share/mysql*删除mysql安装文件
+yum install -y mysql-server mysql mysql-deve
+/usr/bin/mysqladmin -u root password 'new-password'　　// 为root账号设置密码
+mysql -u root -p 命令来登录我们的mysql数据库了
+//允许远程访问数据库
+GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY '123456' WITH GRANT OPTION
+GRANT ALL PRIVILEGES ON *.* TO root@'%' IDENTIFIED BY '123456' WITH GRANT OPTION

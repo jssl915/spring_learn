@@ -1,0 +1,64 @@
+@charset "utf-8";
+body{margin-top:20px;padding:0;background:#FDF9EE;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6D6D6D;}
+h1,h2,h3{margin:0;text-transform:lowercase;font-family:Georgia,"Times New Roman",Times,serif;font-weight:normal;color:#006EA6;}
+h1{letter-spacing:-1px;font-size:35px;}
+h2{font-size:26px;}
+p,ul,ol{margin:0 0 2em 0;text-align:justify;line-height:26px;}
+a:link{text-decoration:none;color:#0094E0;}
+a:hover,a:active{text-decoration:none;color:#0094E0;}
+a:visited{color:#0094E0;}
+/* Form */
+fieldset{margin:0;padding:0;border:none;}
+/* Header */
+#header{width:900px;height:90px;margin:0 auto 20px auto;padding-top:10px;}
+#logo{float:left;height:40px;margin-left:10px;}
+#logo h1{float:left;margin:0;font-size:38px;color:#0099E8;}
+#logo h1 sup{vertical-align:text-top;font-size:24px;}
+#logo h1 a{color:#0099E8;}
+#logo2 h2{float:left;margin:0;padding:20px 0 0 10px;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#FE79A1;}
+#logo2 a{text-decoration:none;color:#FFFFFF;}
+#logo a{text-decoration:none;color:#FFFFFF;}
+/* Menu */
+#menu{float:right;}
+#menu ul{margin:0;padding:0;list-style:none;}
+#menu li{display:inline;}
+#menu a{display:block;float:left;margin-left:5px;background:#0094E0;border:1px dashed #FFFFFF;padding:1px 10px;text-decoration:none;font-size:12px;color:#FFFFFF;}
+#menu a:hover{text-decoration:underline;color:#8BCB2F;}
+/* Page */
+#page{width:900px;margin:0 auto;background:#FFFFFF;border:1px #F0E9D6 solid;padding:20px 20px;}
+/* Content */
+#content{float:left;width:600px;padding-left:10px;}
+/* Post */
+.post{padding-right:5px;}
+.post .title{margin-bottom:10px;padding-bottom:5px;padding-left:40px;border-bottom:1px dashed #D1D1D1;color:#0094E0;}
+.post .title b{font-weight:normal;color:#8BCB2F;}
+.post .time_c{float:right;color:#ABABAB;padding-right:5px;}
+.post .entry{text-indent:2em;margin-top:35px;font-size:14px;}
+.post .meta{margin:0;padding:15px 0 60px 0;}
+.post .meta p{margin:0;line-height:normal;}
+.post .meta .byline{float:left;color:#0000FF;}
+.post .meta .links{float:left;}
+.post .meta .more{width:185px;height:35px;padding:5px 10px;background:#8BCB2F;border:1px dashed #FFFFFF;text-transform:uppercase;text-decoration:none;font-size:14px;}
+.post .meta .more:hover{width:185px;height:35px;padding:5px 10px;background:#0099E8;border:1px dashed #FFFFFF;text-transform:uppercase;text-decoration:none;font-size:14px;}
+.post .meta .comments{padding:5px 10px;text-transform:uppercase;text-decoration:none;background:#0094E0;border:1px dashed #FFFFFF;font-size:14px;}
+.post .meta b{display:none;}
+.post .meta a{color:#FFFFFF;}
+.comment{margin: 0;padding: 5px 0 0 10px;height:30px;line-height:30px;}
+.comment .more{background: none repeat scroll 0 0 #8BCB2F;border: 1px dashed #FFFFFF;color:white;font-size: 14px;height: 35px;padding: 5px 10px;text-decoration: none;text-transform: uppercase;width: 185px;}
+.comment .more:hover{background: none repeat scroll 0 0 #0099E8;border: 1px dashed #FFFFFF;color:white;font-size: 14px;height: 35px;padding: 5px 10px;text-decoration: none;text-transform: uppercase;width: 185px;}
+/* Sidebar */
+#sidebar{float:right;width:230px;padding-right:10px;}
+#sidebar ul{margin:0;padding:10px 0 0 0;list-style:none;}
+#sidebar li{margin-bottom:40px;}
+#sidebar li ul{}
+#sidebar li li{margin:0;padding:3px 0;border-bottom:1px dashed #D1D1D1;}
+#sidebar li li a{margin:0;padding-left:5px;}
+#sidebar h2{padding-bottom:5px;font-size:18px;font-weight:normal;color:#0094E0;}
+#sidebar strong,#sidebar b{color:#8BCB2F;}
+#sidebar a{text-decoration:none;color:#6D6D6D;}
+/* Search */
+#search .search{padding:3px;background:#ECECEC;width:50px;border:none;text-transform:lowercase;font-size:12px;color:#4F4F4F;}
+#search .search:hover{padding:3px;background:#0099E8;width:50px;border:none;text-transform:lowercase;font-size:12px;color:white;cursor:pointer;}
+
+.add_comment{margin:10px 0 10px 0;padding:20px 0 20px 0;border-top:1px dashed #D1D1D1;border-bottom:1px solid #D1D1D1;}
+.comment_list{margin:20px 0 10px 0;font-size:14px;line-height:30px;border-bottom:1px solid #D1D1D1;}

@@ -1,0 +1,64 @@
+SET NAMES ’utf8’;
+最后使用：
+SHOW VARIABLES LIKE 'character_set_%';
+SHOW VARIABLES LIKE 'collation_%'; 
+可以看到我的编码均是 utf8
+查看表的编码格式
+show create table tablename ; 
+或show full fields from tableName;
+如果查看表的字符集不是: utf8，通过一下方法修改表字符集。
+alter table tablename convert to character set utf8;
+
+
+
+CREATE DATABASE lj DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `t_lj_blog` (
+  `blog_id` int(8) NOT NULL AUTO_INCREMENT,
+  `blog_flag` int(8) DEFAULT NULL,
+  `blog_title_name` varchar(128) DEFAULT NULL, 
+  `blog_summary` varchar(1280) DEFAULT NULL,
+  `blog_read_number` int(8) DEFAULT NULL,
+  `blog_classify` int(8) DEFAULT NULL,
+  `blog_author` varchar(128) DEFAULT NULL,
+  `sort` int(8) DEFAULT NULL,
+  `recomment` int(8) DEFAULT NULL,
+  `create_time` varchar(20) DEFAULT NULL,
+  `update_time` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`blog_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `t_lj_blog_classify` (
+  `blog_classify_id` int(8) NOT NULL AUTO_INCREMENT,
+  `blog_classify_name` varchar(128) DEFAULT NULL,
+  `create_time` varchar(20) DEFAULT NULL,
+  `update_time` varchar(20) DEFAULT NULL,
+  `sort` int(8) DEFAULT NULL,
+  PRIMARY KEY (`blog_classify_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `t_lj_blog_comment` (
+  `blog_comment_id` int(8) NOT NULL AUTO_INCREMENT,
+  `blog_id` int(8) DEFAULT NULL,
+  `visit_name` varchar(128) DEFAULT NULL,
+  `visit_email` varchar(128) DEFAULT NULL,
+  `visit_url` varchar(128) DEFAULT NULL,
+  `visit_content` varchar(1280) DEFAULT NULL,
+  `create_time` varchar(20) DEFAULT NULL,
+  `update_time` varchar(20) DEFAULT NULL,
+  `blog_comment_flag` int(8) DEFAULT NULL,
+  PRIMARY KEY (`blog_comment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `t_lj_blog_message` (
+  `blog_message_id` int(8) NOT NULL AUTO_INCREMENT,
+  `visit_name` varchar(128) DEFAULT NULL,
+  `visit_email` varchar(128) DEFAULT NULL,
+  `visit_url` varchar(128) DEFAULT NULL,
+  `visit_content` varchar(1280) DEFAULT NULL,
+  `create_time` varchar(20) DEFAULT NULL,
+  `update_time` varchar(20) DEFAULT NULL,
+  `blog_message_flag` int(8) DEFAULT NULL,
+  PRIMARY KEY (`blog_message_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;

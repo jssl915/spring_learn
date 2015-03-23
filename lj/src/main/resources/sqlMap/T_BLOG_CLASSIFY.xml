@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_BLOG_CLASSIFY">
+  <resultMap id="BaseResultMap" class="main.java.index.entity.BlogClassify" >
+    <result column="BLOG_CLASSIFY_ID" property="blogClassifyId" jdbcType="DECIMAL" />
+    <result column="BLOG_CLASSIFY_NAME" property="blogClassifyName" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="insert" parameterClass="main.java.index.entity.BlogClassify" >
+    insert into t_lj_blog_classify
+    <dynamic prepend="(" >
+      <isNotEmpty prepend="," property="blogClassifyName" >
+        BLOG_CLASSIFY_NAME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="sort" >
+        SORT
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="createTime" >
+        CREATE_TIME
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="updateTime" >
+        UPDATE_TIME
+      </isNotEmpty>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotEmpty prepend="," property="blogClassifyName" >
+        #blogClassifyName:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="sort" >
+        #sort:DECIMAL#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="createTime" >
+        #createTime:VARCHAR#
+      </isNotEmpty>
+      <isNotEmpty prepend="," property="updateTime" >
+        #updateTime:VARCHAR#
+      </isNotEmpty>
+      )
+    </dynamic>
+  </insert>
+  
+    <select id="selectBlogClassifyList" resultMap="BaseResultMap" parameterClass="map" >
+    	select * from t_lj_blog_classify order by create_time desc
+   </select>
+   
+    <select id="selectbyBlogClassifyId" resultMap="BaseResultMap" parameterClass="int" >
+    	select * from t_lj_blog_classify where blog_classify_id = #blogClassifyId#
+  </select>
+
+ </sqlMap>
